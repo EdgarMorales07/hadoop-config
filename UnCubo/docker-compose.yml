@@ -35,6 +35,7 @@ services:
       placement:
         constraints:
           - node.role == manager
+    user: root
 
   # ----------------------
   # ResourceManager (Manager)
@@ -54,6 +55,7 @@ services:
       placement:
         constraints:
           - node.role == manager
+    user: root
 
   # ----------------------
   # DataNode + NodeManager (Workers)
@@ -77,6 +79,7 @@ services:
       endpoint_mode: dnsrr
       mode: replicated
       replicas: 3
+    user: root
       #placement:
         #constraints:
           #- node.role == worker

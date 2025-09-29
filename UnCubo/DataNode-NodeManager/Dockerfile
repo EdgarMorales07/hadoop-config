@@ -29,6 +29,7 @@ COPY Config-files/core-site.xml ${HADOOP_CONF_DIR}/core-site.xml
 COPY Config-files/hdfs-site-datanode.xml ${HADOOP_CONF_DIR}/hdfs-site.xml
 COPY Config-files/yarn-site-nodemanager.xml ${HADOOP_CONF_DIR}/yarn-site.xml
 COPY Config-files/mapred-site-nodemanager.xml ${HADOOP_CONF_DIR}/mapred-site.xml
+COPY Config-files/hadoop-env.sh ${HADOOP_CONF_DIR}/hadoop-env.sh
 
 # Instala OpenSSH
 RUN apt-get update && apt-get install -y openssh-server && \
@@ -70,7 +71,7 @@ RUN chmod 600 /home/hdadmin/.ssh/authorized_keys && \
 
 
 # Cambiamos al usuario hdadmin
-USER hdadmin
+#USER hdadmin
 
 # Definimos las variables de entorno
 ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk-amd64/
