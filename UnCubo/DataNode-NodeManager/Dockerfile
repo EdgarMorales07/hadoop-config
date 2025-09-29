@@ -70,9 +70,6 @@ RUN chmod 600 /home/hdadmin/.ssh/authorized_keys && \
     chown hdadmin:hadoop /home/hdadmin/.ssh/authorized_keys
 
 
-# Cambiamos al usuario hdadmin
-#USER hdadmin
-
 # Definimos las variables de entorno
 ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk-amd64/
 ENV HADOOP_HOME ${BASE_DIR}/hadoop/
@@ -85,3 +82,6 @@ WORKDIR ${HADOOP_HOME}
 # Ejecutamos lo servicios
 RUN echo "$LOG_TAG Iniciando demonios"
 CMD ["/opt/bd/start-daemons.sh"]
+
+# Cambiamos al usuario hdadmin
+USER hdadmin

@@ -28,6 +28,7 @@ RUN echo "$LOG_TAG Creando carpetas para los datos de HDFS del NameNode" && \
 RUN echo "$LOG_TAG Copiando ficheros de configuración y script de inicio"
 COPY Config-files/core-site.xml ${HADOOP_CONF_DIR}/core-site.xml
 COPY Config-files/hdfs-site-namenode.xml ${HADOOP_CONF_DIR}/hdfs-site.xml
+COPY Config-files/hadoop-env.sh ${HADOOP_CONF_DIR}/hadoop-env.sh
 
 # Instala OpenSSH
 RUN apt-get update && apt-get install -y openssh-server && \
@@ -61,9 +62,6 @@ RUN chmod 600 /home/hdadmin/.ssh/authorized_keys && \
     chown hdadmin:hadoop /home/hdadmin/.ssh/authorized_keys
 
 
-# Cambiamos al usuario hdadmin
-USER hdadmin
-
 # Definimos las variables
 ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk-amd64/
 ENV HADOOP_HOME ${BASE_DIR}/hadoop/
@@ -74,3 +72,6 @@ WORKDIR ${HADOOP_HOME}
 
 RUN echo "$LOG_TAG Iniciando servicios"
 CMD ["/opt/bd/start-daemons.sh"]
+
+# Cambiamos al usuario hdadmin
+USER hdadmin
