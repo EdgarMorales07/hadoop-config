@@ -4,15 +4,22 @@ networks:
   hadoop-net:
     driver: overlay
 
+# Define TODOS los archivos de configuración aquí
 configs:
   core-site.xml:
     file: ./DataNode-NodeManager/Config-files/core-site.xml
-  yarn-site-nodemanager.xml:
-    file: ./DataNode-NodeManager/Config-files/yarn-site-nodemanager.xml
+  hdfs-site-namenode.xml:
+    file: ./NameNode/Config-files/hdfs-site-namenode.xml
   hdfs-site-datanode.xml:
     file: ./DataNode-NodeManager/Config-files/hdfs-site-datanode.xml
+  yarn-site-resourcemanager.xml:
+    file: ./ResourceManager/Config-files/yarn-site-resourcemanager.xml
+  yarn-site-nodemanager.xml:
+    file: ./DataNode-NodeManager/Config-files/yarn-site-nodemanager.xml
+  hadoop-env.sh:
+    file: ./DataNode-NodeManager/Config-files/hadoop-env.sh
   ssh-keys:
-    file: ./ssh/authorized_keys   # <-- Archivo con claves públicas de todos los nodos
+    file: ./ssh/authorized_keys
 
 services:
 
@@ -29,6 +36,14 @@ services:
     networks:
       - hadoop-net
     configs:
+      # --- INICIO DE LA CORRECCIÓN ---
+      - source: core-site.xml
+        target: /opt/bd/hadoop/etc/hadoop/core-site.xml
+      - source: hdfs-site-namenode.xml
+        target: /opt/bd/hadoop/etc/hadoop/hdfs-site.xml
+      - source: hadoop-env.sh
+        target: /opt/bd/hadoop/etc/hadoop/hadoop-env.sh
+      # --- FIN DE LA CORRECCIÓN ---
       - source: ssh-keys
         target: /home/hdadmin/.ssh/authorized_keys
     deploy:
@@ -49,6 +64,14 @@ services:
     networks:
       - hadoop-net
     configs:
+      # --- INICIO DE LA CORRECCIÓN ---
+      - source: core-site.xml
+        target: /opt/bd/hadoop/etc/hadoop/core-site.xml
+      - source: yarn-site-resourcemanager.xml
+        target: /opt/bd/hadoop/etc/hadoop/yarn-site.xml
+      - source: hadoop-env.sh
+        target: /opt/bd/hadoop/etc/hadoop/hadoop-env.sh
+      # --- FIN DE LA CORRECCIÓN ---
       - source: ssh-keys
         target: /home/hdadmin/.ssh/authorized_keys
     deploy:
@@ -62,7 +85,8 @@ services:
   # ----------------------
   dnnm:
     image: dnnm-image:latest
-    hostname: dnnm-extra
+    # El hostname aquí es menos relevante porque Swarm gestiona los nombres
+    # hostname: dnnm-extra
     command: /opt/bd/start-daemons.sh
     networks:
       - hadoop-net
@@ -73,6 +97,10 @@ services:
         target: /opt/bd/hadoop/etc/hadoop/yarn-site.xml
       - source: hdfs-site-datanode.xml
         target: /opt/bd/hadoop/etc/hadoop/hdfs-site.xml
+      # --- INICIO DE LA CORRECCIÓN ---
+      - source: hadoop-env.sh
+        target: /opt/bd/hadoop/etc/hadoop/hadoop-env.sh
+      # --- FIN DE LA CORRECCIÓN ---
       - source: ssh-keys
         target: /home/hdadmin/.ssh/authorized_keys
     deploy:
@@ -80,6 +108,3 @@ services:
       mode: replicated
       replicas: 3
     user: root
-      #placement:
-        #constraints:
-          #- node.role == worker
