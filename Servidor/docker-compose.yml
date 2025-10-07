@@ -106,7 +106,7 @@ services:
       - source: ssh-keys
         target: /home/hdadmin/.ssh/authorized_keys
     deploy:
-      endpoint_mode: dnsrr
+      #endpoint_mode: dnsrr
       mode: replicated
       replicas: 3
     user: root
