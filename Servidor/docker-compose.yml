@@ -76,6 +76,7 @@ services:
       - source: ssh-keys
         target: /home/hdadmin/.ssh/authorized_keys
     deploy:
+      endpoint_mode: vip 
       placement:
         constraints:
           - node.role == manager
