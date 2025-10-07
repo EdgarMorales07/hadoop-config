@@ -19,7 +19,7 @@
   <property>
     <!-- Block replication factor (default value 3) -->
     <name>dfs.replication</name>
-    <value>12</value>
+    <value>30</value>
     <final>true</final>
   </property>
   <property>
@@ -49,12 +49,14 @@
     <value>namenode:9000</value>
     <final>true</final>
   </property>
-  
-  <configuration>
-      <property>
-          <name>dfs.namenode.datanode.registration.ip-hostname-check</name>
-          <value>false</value>
-      </property>
-  </configuration>
+   <property>
+     <name>dfs.namenode.datanode.registration.ip-hostname-check</name>
+     <value>false</value>
+   </property>
+
+   <property>
+     <name>dfs.namenode.rpc-bind-host</name>
+     <value>0.0.0.0</value>
+   </property>
 </configuration>
 
