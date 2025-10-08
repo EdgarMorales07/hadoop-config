@@ -35,6 +35,8 @@ RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
 # Copiamos el script de inicio
 COPY Config-files/start-daemons-resourcemanager.sh ${BASE_DIR}/start-daemons.sh
 
+COPY Config-files/spark-defaults.conf /opt/bd/spark/spark-4.0.0-bin-hadoop3/conf/
+
 # Establecemos los permisos
 RUN chmod +x ${BASE_DIR}/start-daemons.sh && \
     chown -R hdadmin:hadoop ${BASE_DIR}

@@ -35,6 +35,8 @@ RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
 # Copiamos el script de inicio
 COPY Config-files/start-daemons-resourcemanager.sh ${BASE_DIR}/start-daemons.sh
 
+COPY Config-files/spark-defaults.conf /opt/bd/spark/spark-4.0.0-bin-hadoop3/conf/
+
 # Establecemos los permisos
 RUN chmod +x ${BASE_DIR}/start-daemons.sh && \
     chown -R hdadmin:hadoop ${BASE_DIR}
@@ -61,9 +63,6 @@ RUN chmod 600 /home/hdadmin/.ssh/authorized_keys && \
     chown hdadmin:hadoop /home/hdadmin/.ssh/authorized_keys
 
 
-# Cambiamos al usuario hdadmin
-USER hdadmin
-
 # Definimos las variables de entorno para hdadmin
 ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk-amd64/
 ENV HADOOP_HOME ${BASE_DIR}/hadoop/
@@ -77,7 +76,6 @@ WORKDIR ${HADOOP_HOME}
 # Ejecutamos los servicios
 RUN echo "$LOG_TAG Iniciando demonios"
 CMD ["/opt/bd/start-daemons.sh"]
-
 # Cambiamos al usuario hdadmin
 USER hdadmin
 

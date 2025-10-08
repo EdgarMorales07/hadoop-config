@@ -72,5 +72,6 @@ WORKDIR ${HADOOP_HOME}
 
 RUN echo "$LOG_TAG Iniciando servicios"
 CMD ["/opt/bd/start-daemons.sh"]
+
 # Cambiamos al usuario hdadmin
 USER hdadmin

@@ -25,5 +25,13 @@
     <value>file:///var/data/hadoop/hdfs/dn</value>
     <final>true</final>
   </property>
+  <property>
+    <name>dfs.datanode.use.datanode.hostname</name>
+    <value>true</value>
+  </property>
+    <property>
+      <name>dfs.client.use.datanode.hostname</name>
+      <value>true</value>
+    </property>
 </configuration>
 

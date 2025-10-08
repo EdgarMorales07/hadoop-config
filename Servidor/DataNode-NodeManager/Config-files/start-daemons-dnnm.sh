@@ -2,6 +2,8 @@
 
 service ssh start
 
+export SPARK_EXECUTOR_HOSTNAME=$(hostname)
+
 HADOOP_HOME=/opt/bd/hadoop/
 
 SERVICE1=${HADOOP_HOME}/bin/hdfs
