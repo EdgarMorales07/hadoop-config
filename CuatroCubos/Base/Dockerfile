@@ -13,7 +13,7 @@ ENV HADOOP_HOME=${BASE_DIR}/hadoop
 ENV LOG_TAG "[BASE Hadoop_${HADOOP_VERSION}]:"
 ENV REPOSITORY https://dlcdn.apache.org/hadoop/common
 ENV SPARK_VERSION=4.0.0
-ENV SPARK_HOME=${BASE_DIR}/spark
+ENV SPARK_HOME=${BASE_DIR}/spark/spark-4.0.0-bin-hadoop3
 ENV LOG_TAG="[Hadoop ${HADOOP_VERSION} | Spark ${SPARK_VERSION}]:"
 ENV PATH="${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:${SPARK_HOME}/bin:${SPARK_HOME}/sbin:${PATH}"
 ENV PYTHONPATH="${SPARK_HOME}/python/:${PYTHONPATH}"
