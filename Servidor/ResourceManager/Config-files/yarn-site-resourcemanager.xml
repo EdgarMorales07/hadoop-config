@@ -45,7 +45,7 @@
              Memory requests higher than this will throw an 
              InvalidResourceRequestException (default value 8192) -->
         <name>yarn.scheduler.maximum-allocation-mb</name>
-        <value>2560</value>
+        <value>2048</value>
         <final>true</final>
       </property>
     <property>
@@ -56,5 +56,14 @@
       <name>yarn.resourcemanager.bind-host</name>
       <value>0.0.0.0</value>
     </property>
+  <property>
+    <name>yarn.log-aggregation-enable</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>yarn.log-aggregation.retain-seconds</name>
+    <value>86400</value>
+  </property>
 </configuration>
 
