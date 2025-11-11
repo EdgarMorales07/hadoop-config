@@ -59,7 +59,7 @@ services:
       placement:
         constraints:
           - node.role == manager
-    user: root
+    #user: root
 
   # ----------------------
   # ResourceManager (Manager)
@@ -94,7 +94,7 @@ services:
       placement:
         constraints:
           - node.role == manager
-    user: root
+    #user: root
 
   # ----------------------
   # DataNode + NodeManager (Workers)
@@ -125,4 +125,4 @@ services:
           memory: 6G  
         reservations:
           memory: 2G  
-    user: root
+    #user: root
