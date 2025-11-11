@@ -7,16 +7,23 @@
   </property>
 
   <property>
-    <name>yarn.app.mapreduce.am.env</name>
-    <value>HADOOP_MAPRED_HOME=${HADOOP_HOME}</value>
+    <name>mapreduce.admin.user.env</name>
+    <value>HADOOP_OPTS="$HADOOP_OPTS --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/sun.security.action=ALL-UNNAMED"</value>
   </property>
+
+  <property>
+    <name>yarn.app.mapreduce.am.env</name>
+    <value>HADOOP_MAPRED_HOME=${HADOOP_HOME} HADOOP_OPTS="$HADOOP_OPTS --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED"</value>
+  </property>
+  
   <property>
     <name>mapreduce.map.env</name>
-    <value>HADOOP_MAPRED_HOME=${HADOOP_HOME}</value>
+    <value>HADOOP_MAPRED_HOME=${HADOOP_HOME} HADOOP_OPTS="$HADOOP_OPTS --add-opens=java.base/java.lang=ALL-UNNAMED"</value>
   </property>
+  
   <property>
     <name>mapreduce.reduce.env</name>
-    <value>HADOOP_MAPRED_HOME=${HADOOP_HOME}</value>
+    <value>HADOOP_MAPRED_HOME=${HADOOP_HOME} HADOOP_OPTS="$HADOOP_OPTS --add-opens=java.base/java.lang=ALL-UNNAMED"</value>
   </property>
 
   <property>
@@ -25,11 +32,11 @@
   </property>
   <property>
     <name>yarn.app.mapreduce.am.resource.mb</name>
-    <value>1024</value>
+    <value>1024</value> 
   </property>
   <property>
-    <name>mapreduce.am.admin.opts</name>
-    <value>--add-opens=java.base/java.lang=ALL-UNNAMED</value>
+    <name>mapreduce.am.java.opts</name>
+    <value>-Xmx768m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED</value>
   </property>
 
   <property>
@@ -37,12 +44,12 @@
     <value>1</value>
   </property>
   <property>
-    <name>mapreduce.map.java.opts</name>
-    <value>-Xmx1024M --add-opens=java.base/java.lang=ALL-UNNAMED</value>
+    <name>mapreduce.map.memory.mb</name>
+    <value>2048</value>  
   </property>
   <property>
-    <name>mapreduce.map.memory.mb</name>
-    <value>-1</value>
+    <name>mapreduce.map.java.opts</name>
+    <value>-Xmx1536m --add-opens=java.base/java.lang=ALL-UNNAMED</value>
   </property>
 
   <property>
@@ -50,12 +57,30 @@
     <value>1</value>
   </property>
   <property>
-    <name>mapreduce.reduce.java.opts</name>
-    <value>-Xmx1024M --add-opens=java.base/java.lang=ALL-UNNAMED</value>
+    <name>mapreduce.reduce.memory.mb</name>
+    <value>2048</value> 
   </property>
   <property>
-    <name>mapreduce.reduce.memory.mb</name>
-    <value>-1</value>
+    <name>mapreduce.reduce.java.opts</name>
+    <value>-Xmx1536m --add-opens=java.base/java.lang=ALL-UNNAMED</value>
   </property>
 
+
+  <property>
+    <name>mapreduce.job.maps</name>
+    <value>4</value> 
+  </property>
+  <property>
+    <name>mapreduce.job.reduces</name>
+    <value>2</value>
+  </property>
+
+  <property>
+    <name>mapreduce.job.heap.memory-mb.ratio</name>
+    <value>0.8</value>
+  </property>
+  <property>
+    <name>mapreduce.application.classpath</name>
+    <value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*,$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value>
+  </property>
 </configuration>
