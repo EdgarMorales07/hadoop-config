@@ -1,6 +1,8 @@
-#!bin/bash
+#!/bin/bash
 
-export HADOOP_OPTS="--add-opens=java.base/java.lang=ALL-UNNAMED"
+export JAVA_HOME=${JAVA_HOME}
+export HADOOP_CLIENT_OPTS="-Xmx1G \${HADOOP_CLIENT_OPTS}"
+export HADOOP_OPTS="\${HADOOP_OPTS}"
 
 # --- Configuración de RAM para Daemons de HDFS ---
 # 1 GB para el NameNode
