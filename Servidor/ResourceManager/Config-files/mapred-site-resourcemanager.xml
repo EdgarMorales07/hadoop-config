@@ -125,5 +125,20 @@
     <value>-1</value>
     <final>true</final>
   </property>
+
+  <property>
+  <name>mapreduce.am.admin.opts</name>
+  <value>--add-opens=java.base/java.lang=ALL-UNNAMED</value>
+  </property>
+
+  <property>
+    <name>mapreduce.map.java.opts</name>
+    <value>--add-opens=java.base/java.lang=ALL-UNNAMED</value>
+  </property>
+
+  <property>
+    <name>mapreduce.reduce.java.opts</name>
+    <value>--add-opens=java.base/java.lang=ALL-UNNAMED</value>
+  </property>
 </configuration>
 
