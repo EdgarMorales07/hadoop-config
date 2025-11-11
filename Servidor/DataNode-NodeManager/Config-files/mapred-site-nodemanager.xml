@@ -82,7 +82,7 @@
   <property>
     <!-- Java options for the Maps JVMs -->
     <name>mapreduce.map.java.opts</name>
-    <value>-Xmx1024M</value> <!-- Specify the maximum size, in bytes, of the Java heap memory -->
+    <value>-Xmx1024M --add-opens=java.base/java.lang=ALL-UNNAMED</value> <!-- Specify the maximum size, in bytes, of the Java heap memory -->
     <final>true</final>
   </property>
 
@@ -113,7 +113,7 @@
   <property>
     <!-- Java options for the Reduces JVMs -->
     <name>mapreduce.reduce.java.opts</name>
-    <value>-Xmx1024M</value> <!-- Xmx max size of Java Heap -->
+    <value>-Xmx1024M --add-opens=java.base/java.lang=ALL-UNNAMED</value> <!-- Xmx max size of Java Heap -->
     <final>true</final>
   </property>
 
@@ -129,16 +129,6 @@
   <property>
   <name>mapreduce.am.admin.opts</name>
   <value>--add-opens=java.base/java.lang=ALL-UNNAMED</value>
-  </property>
-
-  <property>
-    <name>mapreduce.map.java.opts</name>
-    <value>--add-opens=java.base/java.lang=ALL-UNNAMED</value>
-  </property>
-
-  <property>
-    <name>mapreduce.reduce.java.opts</name>
-    <value>--add-opens=java.base/java.lang=ALL-UNNAMED</value>
   </property>
 </configuration>
 
